@@ -18,7 +18,8 @@ p2 = detectFASTFeatures(I2);
 [desc2, locs2] = computeBrief(I2, p2.Location);
 
 %% Match features using the descriptors
-indexPairs = matchFeatures(desc1,desc2, 'MatchThreshold', 10, 'MaxRatio', 0.68);
+%indexPairs = matchFeatures(desc1,desc2, 'MatchThreshold', 10, 'MaxRatio', 0.68);
+indexPairs = matchFeatures(desc1,desc2, 'MatchThreshold', 10, 'MaxRatio', 0.7);
 locs1 = locs1(indexPairs(:,1),:);
 locs2 = locs2(indexPairs(:,2),:);
 

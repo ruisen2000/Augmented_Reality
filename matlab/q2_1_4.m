@@ -1,5 +1,5 @@
 %Q2.1.4
-close all;
+%close all;
 clear all;
 
 cv_cover = imread('../data/cv_cover.jpg');

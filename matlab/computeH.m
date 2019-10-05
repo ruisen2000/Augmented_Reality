@@ -10,7 +10,8 @@ function [ H2to1 ] = computeH( x1, x2 )
         y = x1(i, 2);
         x_p = x2(i,1);
         y_p = x2(i,2);
-
+        
+        % A derived from least squares method in text
         if mod(i,2) == 1
             A(i,:) = [-x, -y, -1, 0, 0, 0, x*x_p, y*x_p, x_p];        
         else
@@ -18,12 +19,19 @@ function [ H2to1 ] = computeH( x1, x2 )
         end
     end
 
-    [V,D] = eig(A'*A);
+    [V,D] = eig(A'*A);   
     D = diag(D);
-    [~,index] = min(D);
+    [~,index] = min(D);  % solution of h is eigenvector with minimum eigenvalue
     
-
-    H2to1 = V(:, index);
+    % if there are not enough points to solve for all h values, select the
+    % last eigenvector
+    %if r <= 4
+     %   [~,c_eig] = size(V);
+      %  H2to1 = V(:, c_eig);
+    %else
+        H2to1 = V(:, index);
+   % end
+    
     H2to1 = vec2mat(H2to1, 3);
 
 end

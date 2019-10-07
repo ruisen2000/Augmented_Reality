@@ -1,0 +1,13 @@
+% Q3.3.1
+book = loadVid('../data/book.mov');
+source = loadVid('../data/ar_source.mov');
+cv_img = imread('../data/cv_cover.jpg');
+[r,c] = size(cv_img);
+nFrames = length(book);
+
+
+
+for i = 1:nFrames
+    [locs1, locs2] = matchPics(cv_img, book(i).cdata);
+    scaled_movie_img = source(i).cdata(
+end

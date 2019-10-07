@@ -31,7 +31,6 @@ transform2 = T2 * shiftMatrix2;
 x2 = transform2*x2;
 x2 = hom2cart(x2');
 
-
 %% Compute Homography
 H2to1 = computeH(x1,x2);
 

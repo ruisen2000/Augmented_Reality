@@ -26,7 +26,13 @@ for i = 1:35
     [desc4, locs4] = computeBrief(rotated_img, p4.Location);
     %% Match features
     indexPairs = matchFeatures(desc1,desc2, 'MatchThreshold', 10, 'MaxRatio', 0.7);  
-    indexPairs_surf = matchFeatures(desc3,desc4, 'MatchThreshold', 10, 'MaxRatio', 0.7);    
+    indexPairs_surf = matchFeatures(desc3,desc4, 'MatchThreshold', 10, 'MaxRatio', 0.7); 
+    
+    locs1 = locs1(indexPairs(:,1),:);
+    locs2 = locs2(indexPairs(:,2),:);
+    
+    figure;
+    showMatchedFeatures(img1,rotated_img,locs1,locs2, 'montage');
     %% Update histogram
     [r,c] = size(indexPairs);
     [r_s,c_s] = size(indexPairs_surf);

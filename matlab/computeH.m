@@ -23,15 +23,11 @@ function [ H2to1 ] = computeH( x1, x2 )
     D = diag(D);
     [~,index] = min(D);  % solution of h is eigenvector with minimum eigenvalue
     
-    % if there are not enough points to solve for all h values, select the
-    % last eigenvector
-    %if r <= 4
-     %   [~,c_eig] = size(V);
-      %  H2to1 = V(:, c_eig);
-    %else
-        H2to1 = V(:, index);
-   % end
-    
+
+    H2to1 = V(:, index);    
     H2to1 = vec2mat(H2to1, 3);
+    
+    %alpha_inv = x1(1)*H2to1(3, 1) + x1(2)*H2to1(3, 2) + H2to1(3, 3);
+    %H2to1 = 1/alpha_inv * H2to1;
 
 end

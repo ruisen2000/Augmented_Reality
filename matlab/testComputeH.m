@@ -9,9 +9,9 @@ img2 = imread(sprintf('%s/%s', datadir, 'cv_desk.png'));
 %H2to1 = computeH_norm(x1,x2);
 %H2to1 = computeH(x1,x2);
 [H2to1, inliers] = computeH_ransac(x1,x2);
-%locs1 = x1(inliers, :);
+locs1 = x1(inliers, :);
 borders = [0 0; 350 0; 0 440; 350 440; 330 420; 20 20];
-locs1 = borders;
+%locs1 = borders;
 
 locs1 = cart2hom(locs1);
 

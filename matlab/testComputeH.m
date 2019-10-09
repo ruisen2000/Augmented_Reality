@@ -8,14 +8,18 @@ img2 = imread(sprintf('%s/%s', datadir, 'cv_desk.png'));
 
 %H2to1 = computeH_norm(x1,x2);
 %H2to1 = computeH(x1,x2);
+%locs1 = x1;
+
 [H2to1, inliers] = computeH_ransac(x1,x2);
-locs1 = x1(inliers, :);
-borders = [0 0; 350 0; 0 440; 350 440; 330 420; 20 20];
+%locs1 = x1(inliers, :);
+
+
+%borders = [0 0; 350 0; 0 440; 350 440; 330 420; 20 20];
 %locs1 = borders;
 
-locs1 = cart2hom(locs1);
+%locs1 = cart2hom(locs1);
 
-%locs1 = [14 7 1; 350 66 1; 50 298 1; 185 98 1; 289 378 1; 225 225 1];  % test locations
+%locs1 = [14 7 1; 350 66 1; 50 298 1; 185 98 1; 289 378 1; 225 225 1; 71 77 1; 98 230 1; 250 13 1; 93 71 1];  % test locations
 
 locs2 = H2to1*locs1';
 

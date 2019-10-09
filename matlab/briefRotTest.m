@@ -10,6 +10,7 @@ end
 %% Compute the features and descriptors
 numFeatures = zeros(1,35);
 numFeatures_surf = zeros(1,35);
+
 for i = 1:35
     %% Rotate image
     rotated_img = imrotate(img1, 10*i);
@@ -28,11 +29,10 @@ for i = 1:35
     indexPairs = matchFeatures(desc1,desc2, 'MatchThreshold', 10, 'MaxRatio', 0.7);  
     indexPairs_surf = matchFeatures(desc3,desc4, 'MatchThreshold', 10, 'MaxRatio', 0.7); 
     
-    locs1 = locs1(indexPairs(:,1),:);
-    locs2 = locs2(indexPairs(:,2),:);
+    locs3 = locs3(indexPairs_surf(:,1),:);
+    locs4 = locs4(indexPairs_surf(:,2),:);
     
-    figure;
-    showMatchedFeatures(img1,rotated_img,locs1,locs2, 'montage');
+    %showMatchedFeatures(img1,rotated_img,locs3,locs4, 'montage');
     %% Update histogram
     [r,c] = size(indexPairs);
     [r_s,c_s] = size(indexPairs_surf);
@@ -41,6 +41,8 @@ for i = 1:35
 end
 
 %% Display histogram
-histogram(numFeatures);
+x = 10:10:350;
 figure;
-histogram(numFeatures_surf);
+bar(x, numFeatures);
+figure;
+bar(x, numFeatures_surf);

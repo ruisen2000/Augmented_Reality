@@ -1,13 +1,13 @@
 function [ bestH2to1, inliers] = computeH_ransac( locs1, locs2)
     %COMPUTEH_RANSAC A method to compute the best fitting homography given a
     %list of matching points.
-    N = 500; % number of iterations
-    threshold = 10;
+    N = 10000; % number of iterations
+    threshold = 1;
     max_inliers = 0;
     bestH2to1 = zeros(3,3);
 
     for i = 1:N
-        [x1, indx] = datasample(locs1,5);  % choose 4 random points from locs1
+        [x1, indx] = datasample(locs1,4);  % choose 4 random points from locs1
         x2 = locs2(indx, :);
         H = computeH_norm(x1,x2);
         

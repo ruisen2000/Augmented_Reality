@@ -3,7 +3,7 @@ clear;
 book = loadVid('../data/book.mov');
 source = loadVid('../data/ar_source.mov');
 cv_img = imread('../data/cv_cover.jpg');
-output = VideoWriter('../results/movie.avi');
+output = VideoWriter('../results/movie_surf_N1000.avi');
 open(output);
 
 nFrames = length(source);
@@ -15,7 +15,8 @@ scale = movie_h / h;
 cv_img = imresize(cv_img, scale);
 
 %amount to crop on each side
-crop = (movie_w - w) / 2;
+[h,w] = size(cv_img);
+crop = int16((movie_w - w) / 2);
 
 for i = 1:nFrames
     [locs1, locs2] = matchPics(cv_img, book(i).cdata);

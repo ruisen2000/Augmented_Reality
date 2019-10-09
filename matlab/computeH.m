@@ -1,7 +1,7 @@
 function [ H2to1 ] = computeH( x1, x2 )
 %COMPUTEH Computes the homography between two sets of points
 % input is in cartesian coordinates
-    A = zeros(9,9);
+    A = [];
     
     [r,c] = size(x1);
 
@@ -12,17 +12,16 @@ function [ H2to1 ] = computeH( x1, x2 )
         y_p = x2(i,2);
         
         % A derived from least squares method in text
-        if mod(i,2) == 1
-            A(i,:) = [-x, -y, -1, 0, 0, 0, x*x_p, y*x_p, x_p];        
-        else
-            A(i,:) = [0, 0, 0, -x, -y, -1, x*y_p, y*y_p, y_p];
-        end
+        
+        next = [-x, -y, -1, 0, 0, 0, x*x_p, y*x_p, x_p; 0, 0, 0, -x, -y, -1, x*y_p, y*y_p, y_p]; 
+        A = [A; next];        
     end
-
+    
     [V,D] = eig(A'*A);   
     D = diag(D);
     [~,index] = min(D);  % solution of h is eigenvector with minimum eigenvalue
     
+    %[U,S,V] = svd(A)
 
     H2to1 = V(:, index);    
     H2to1 = vec2mat(H2to1, 3);
